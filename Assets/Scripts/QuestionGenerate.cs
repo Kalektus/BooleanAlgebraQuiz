@@ -24,7 +24,6 @@ public class QuestionGenerate : MonoBehaviour
     public Sprite Question5; // Sprite za 5.pitanje (sliku)
     public Sprite Question6; // Sprite za 6.pitanje (sliku)
 
-
     void Update()
     {
         if ( displayingQuestion == false) {

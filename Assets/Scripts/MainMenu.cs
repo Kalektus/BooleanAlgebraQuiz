@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
 public AudioSource CorrectFX;
 public AudioSource InCorrectFX;
-  public void PlayGame(){
+public void PlayGame(){
         CorrectFX.Play();
         StartCoroutine(PlayPressed());
   }
@@ -25,3 +25,4 @@ public void menusoundno(){
     InCorrectFX.Play();
 }
 }
+
