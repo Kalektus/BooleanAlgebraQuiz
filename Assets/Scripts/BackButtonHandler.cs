@@ -22,8 +22,6 @@ public class BackButtonHandler : MonoBehaviour
         }
     }
     public void GoToMainMenu(){
-        QuestionGenerate.displayingQuestion = false;
-        QuestionDisplay.pleaseUpdate = false;
         SceneManager.LoadScene("MainMenu");
     }
     public void Cancel(){

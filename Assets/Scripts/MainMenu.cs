@@ -13,7 +13,9 @@ public void PlayGame(){
   }
 IEnumerator PlayPressed(){
 yield return new WaitForSeconds(0.4f);
-  SceneManager.LoadSceneAsync(1);
+        QuestionGenerate.displayingQuestion = false;
+        QuestionDisplay.pleaseUpdate = false;
+        SceneManager.LoadSceneAsync(1);
 }
 public void QuitGame(){
         Application.Quit();
