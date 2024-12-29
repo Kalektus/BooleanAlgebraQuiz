@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public static float timeRemaining = 10;
+    public static float timeRemaining = 15;
     public static bool timeIsRunning = true;
     public GameObject timerText;
     // Start is called before the first frame update

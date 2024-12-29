@@ -33,7 +33,7 @@ public class AnswerButtons : MonoBehaviour
     public static int HiScore; // varijabla za najbolji rezultat koji prikazujemo
     public GameObject DisplayHiScore; // objekt za prikazivanje najboljeg rezultata
     public GameObject QuestionImage; // objekt za sliku pitanja
-    public GameObject losermenu;
+    public GameObject losermenu; // pop menu na krivi odg ili timeout
 
 
     void Start(){
@@ -42,7 +42,10 @@ public class AnswerButtons : MonoBehaviour
 
     void Update(){
         CurScore.GetComponent<Text>().text = "Score: " + scoreValue;
-        timerEnd();
+        if(losermenu.activeSelf){
+        }else{
+            timerEnd();
+        }
     }
 
     public void AnswerA(){
@@ -55,18 +58,24 @@ public class AnswerButtons : MonoBehaviour
             }else{
                scoreValue = scoreValue + 1; 
             }
-    }
+            Stats.correctA = Stats.correctA + 1;
+            PlayerPrefs.SetInt("CorrectAnswers", Stats.correctA);
+            PlayerPrefs.Save();
+        }
         else{
             answerAbackRed.SetActive(true);
             answerAbackBlue.SetActive(false);
             InCorrectFX.Play();
-            scoreValue = 0;
+            losermenu.SetActive(true);
+            Timer.timeIsRunning = false;
         }
         answerA.GetComponent<Button>().enabled = false;    // gasimo mogucnost stiskanja tipke nakon odgovora
         answerB.GetComponent<Button>().enabled = false;
         answerC.GetComponent<Button>().enabled = false;
-        answerD.GetComponent<Button>().enabled = false;   
+        answerD.GetComponent<Button>().enabled = false;
+        if (QuestionGenerate.actualAnswer == "A"){   
         StartCoroutine(NextQuestion());
+        }
     
     }
 
@@ -80,20 +89,23 @@ public class AnswerButtons : MonoBehaviour
             }else{
                scoreValue = scoreValue + 1; 
             }
+            Stats.correctA = Stats.correctA + 1;
+            PlayerPrefs.SetInt("CorrectAnswers", Stats.correctA);
+            PlayerPrefs.Save();
         }
-    
-    
-    else{
+        else{
         answerBbackRed.SetActive(true);
         answerBbackBlue.SetActive(false);
         InCorrectFX.Play();
-        scoreValue = 0;
+        losermenu.SetActive(true);
     }
     answerA.GetComponent<Button>().enabled = false;    // gasimo mogucnost stiskanja tipke nakon odgovora
     answerB.GetComponent<Button>().enabled = false;
     answerC.GetComponent<Button>().enabled = false;
     answerD.GetComponent<Button>().enabled = false;
-    StartCoroutine(NextQuestion());    
+    if (QuestionGenerate.actualAnswer == "B"){   
+        StartCoroutine(NextQuestion());
+        }   
     }
 
    public void AnswerC(){ 
@@ -106,21 +118,24 @@ public class AnswerButtons : MonoBehaviour
             }else{
                scoreValue = scoreValue + 1; 
             }
+        Stats.correctA = Stats.correctA + 1;
+        PlayerPrefs.SetInt("CorrectAnswers", Stats.correctA);
+        PlayerPrefs.Save();
         }
-    
-    
-    else{
+        else{
         answerCbackRed.SetActive(true);
         answerCbackBlue.SetActive(false);
         InCorrectFX.Play();
-        scoreValue = 0;
+        losermenu.SetActive(true);
     }
     answerA.GetComponent<Button>().enabled = false;    // gasimo mogucnost stiskanja tipke nakon odgovora
     answerB.GetComponent<Button>().enabled = false;
     answerC.GetComponent<Button>().enabled = false;
     answerD.GetComponent<Button>().enabled = false; 
-    StartCoroutine(NextQuestion()); 
-   }
+    if (QuestionGenerate.actualAnswer == "C"){   
+        StartCoroutine(NextQuestion());
+        }   
+    } 
 
     public void AnswerD(){
         if (QuestionGenerate.actualAnswer == "D"){
@@ -132,26 +147,29 @@ public class AnswerButtons : MonoBehaviour
             }else{
                scoreValue = scoreValue + 1; 
             }
+        Stats.correctA = Stats.correctA + 1;
+        PlayerPrefs.SetInt("CorrectAnswers", Stats.correctA);
+        PlayerPrefs.Save();
         }
-    
-    
-    else{
+        else{
         answerDbackRed.SetActive(true);
         answerDbackBlue.SetActive(false);
         InCorrectFX.Play();
-        scoreValue = 0;
+        losermenu.SetActive(true);
     }
     answerA.GetComponent<Button>().enabled = false;    // gasimo mogucnost stiskanja tipke nakon odgovora
     answerB.GetComponent<Button>().enabled = false;
     answerC.GetComponent<Button>().enabled = false;
     answerD.GetComponent<Button>().enabled = false; 
-    StartCoroutine(NextQuestion()); 
+    if (QuestionGenerate.actualAnswer == "D"){   
+        StartCoroutine(NextQuestion());
+    }   
     }
+
 
     void timerEnd(){
         if(!Timer.timeIsRunning){
             losermenu.SetActive(true);
-            scoreValue = 0;
             InCorrectFX.Play();
             answerA.GetComponent<Button>().enabled = false;    // gasimo mogucnost stiskanja tipke nakon odgovora
             answerB.GetComponent<Button>().enabled = false;
@@ -188,7 +206,7 @@ public class AnswerButtons : MonoBehaviour
         ButtonD.SetActive(false);
         QuestionImage.SetActive(false);
         QuestionGenerate.displayingQuestion = false;  // govori drugoj skripti da pokaze drugo pitanje
-        Timer.timeRemaining = 10;
+        Timer.timeRemaining = 15;
         Timer.timeIsRunning = true;
     }
 

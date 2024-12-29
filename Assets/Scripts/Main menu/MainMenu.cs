@@ -17,6 +17,7 @@ yield return new WaitForSeconds(0.4f);
         QuestionDisplay.pleaseUpdate = false;
         Timer.timeRemaining = 15;
         SceneManager.LoadSceneAsync(1);
+        Stats.correctA = PlayerPrefs.GetInt("CorrectAnswers", 0);
 }
 public void QuitGame(){
         Application.Quit();
