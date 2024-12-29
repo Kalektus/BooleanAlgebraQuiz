@@ -12,3 +12,5 @@ In short, I implemented:
 - Options screen with sound control
 - pause menu with volume control and flow to main menu
 - new UI design
+- timer
+- main menu stats
