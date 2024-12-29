@@ -68,6 +68,7 @@ public class QuestionGenerate : MonoBehaviour
                 QuestionDisplay.newC = "A. 1";
                 QuestionDisplay.newD = "B. 0";
                 pic.sprite = Question3;
+                Timer.timeRemaining = Timer.timeRemaining + 30;
                 QuestionImage.SetActive(true);
                 ScreenQuestion.SetActive(true);
                 ButtonC.SetActive(true);
@@ -83,6 +84,7 @@ public class QuestionGenerate : MonoBehaviour
                 QuestionDisplay.newC = "C. x’y’ + z";
                 QuestionDisplay.newD = "D. (x’ + y’)z";
                 pic.sprite = Question4;
+                Timer.timeRemaining = Timer.timeRemaining + 30;
                 QuestionImage.SetActive(true);
                 ScreenQuestion.SetActive(true);
                 ButtonA.SetActive(true);
@@ -102,6 +104,7 @@ public class QuestionGenerate : MonoBehaviour
                 QuestionDisplay.newC = "C. x’y’z";
                 QuestionDisplay.newD = "D. x’ + y’ + z’";
                 pic.sprite = Question5;
+                Timer.timeRemaining = Timer.timeRemaining + 30;
                 QuestionImage.SetActive(true);
                 ScreenQuestion.SetActive(true);
                 ButtonA.SetActive(true);
@@ -121,6 +124,7 @@ public class QuestionGenerate : MonoBehaviour
                 QuestionDisplay.newC = "C. NAND";
                 QuestionDisplay.newD = "D. NOR";
                 pic.sprite = Question6;
+                Timer.timeRemaining = Timer.timeRemaining + 30;
                 QuestionImage.SetActive(true);
                 ScreenQuestion.SetActive(true);
                 ButtonA.SetActive(true);

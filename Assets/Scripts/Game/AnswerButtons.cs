@@ -30,19 +30,19 @@ public class AnswerButtons : MonoBehaviour
     public GameObject ButtonC; // objekt za manipulaciju tipkom
     public GameObject ButtonD; // objekt za manipulaciju tipkom
     public GameObject ScreenQuestion;  // objekt za pokazivanje teksta za pitanje
-    public int HiScore; // varijabla za najbolji rezultat koji prikazujemo
+    public static int HiScore; // varijabla za najbolji rezultat koji prikazujemo
     public GameObject DisplayHiScore; // objekt za prikazivanje najboljeg rezultata
     public GameObject QuestionImage; // objekt za sliku pitanja
+    public GameObject losermenu;
 
 
     void Start(){
-        HiScore = PlayerPrefs.GetInt("HiScorePlayer");
-        DisplayHiScore.GetComponent<Text>().text = "HiScore: " + HiScore;
-
+       
     }
 
     void Update(){
         CurScore.GetComponent<Text>().text = "Score: " + scoreValue;
+        timerEnd();
     }
 
     public void AnswerA(){
@@ -148,12 +148,24 @@ public class AnswerButtons : MonoBehaviour
     StartCoroutine(NextQuestion()); 
     }
 
+    void timerEnd(){
+        if(!Timer.timeIsRunning){
+            losermenu.SetActive(true);
+            scoreValue = 0;
+            InCorrectFX.Play();
+            answerA.GetComponent<Button>().enabled = false;    // gasimo mogucnost stiskanja tipke nakon odgovora
+            answerB.GetComponent<Button>().enabled = false;
+            answerC.GetComponent<Button>().enabled = false;
+            answerD.GetComponent<Button>().enabled = false;
+            Timer.timeIsRunning = true;
+        }
+    }
+
     IEnumerator NextQuestion()
     {
         if (HiScore < scoreValue){
             PlayerPrefs.SetInt("HiScorePlayer", scoreValue);
             HiScore = scoreValue;
-            DisplayHiScore.GetComponent<Text>().text = "HiScore: " + scoreValue;
         }
         yield return new WaitForSeconds(2);
 
@@ -176,6 +188,8 @@ public class AnswerButtons : MonoBehaviour
         ButtonD.SetActive(false);
         QuestionImage.SetActive(false);
         QuestionGenerate.displayingQuestion = false;  // govori drugoj skripti da pokaze drugo pitanje
+        Timer.timeRemaining = 10;
+        Timer.timeIsRunning = true;
     }
 
 }

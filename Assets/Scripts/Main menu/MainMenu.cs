@@ -15,6 +15,7 @@ IEnumerator PlayPressed(){
 yield return new WaitForSeconds(0.4f);
         QuestionGenerate.displayingQuestion = false;
         QuestionDisplay.pleaseUpdate = false;
+        Timer.timeRemaining = 15;
         SceneManager.LoadSceneAsync(1);
 }
 public void QuitGame(){
